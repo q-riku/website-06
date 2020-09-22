@@ -1,0 +1,725 @@
+@charset "utf-8";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "游ゴシック", Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/******************************************
+loading
+******************************************/
+svg {
+    width: 387px;
+    margin-top: -2px;
+}
+
+path {
+    stroke-dasharray: 500;
+    animation: dash 2s linear;
+    stroke: black;
+    stroke-width: 1;
+    fill: black;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 500;
+        fill-opacity: 0;
+    }
+
+    40% {
+        fill-opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+    }
+}
+
+div.loading {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    overflow-y: scroll;
+    animation: fadeOut 2s linear 2s forwards;
+}
+
+div.loading>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
+
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media only screen and (max-width: 449px) {
+    svg {
+        width: calc(100% - 80px);
+        margin-top: 0;
+    }
+}
+
+/******************************************
+header
+******************************************/
+header {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/mainvisual.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/**************
+mainvisual
+**************/
+div.mainvisual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+div.mainvisual>div {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    box-sizing: border-box;
+    border: 1px white solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 449px) {
+    div.mainvisual h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.mainvisual img {
+        width: calc(100% - 40px);
+    }
+}
+
+
+/**************
+nav
+**************/
+.btn {
+    width: 280px;
+    height: 280px;
+    position: fixed;
+    right: -140px;
+    top: -140px;
+    border-radius: 140px;
+    border: 2px solid white;
+    background-color: black; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 900;
+    box-sizing: border-box;
+}
+
+.btn>div {
+    width: 40px;
+    position: absolute;
+    bottom: 70px;
+    left: 70px;
+}
+
+.btn>div>div {
+    width: 40px;
+    height: 5px;
+    margin-top: 5px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.btn>div>div:nth-of-type(1) {
+    margin-top: 0;
+}
+
+.change>div>div:nth-last-of-type(1) {
+    transform: translate(0, -10px) rotate(-135deg);
+}
+
+.change>div>div:nth-last-of-type(2) {
+    opacity: 0;
+}
+
+.change>div>div:nth-last-of-type(3) {
+    transform: translate(0, 10px) rotate(-45deg);
+}
+
+header nav {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 1);
+    clip-path: circle(140px at 100% 0);
+    transition: all 0.8s;
+    z-index: 800;
+}
+
+
+header nav.click {
+    clip-path: circle(150% at 100% 0);
+}
+
+header nav ul {
+    font-size: 0;
+}
+
+header nav ul li {
+    height: 80px;
+    text-align: center;
+}
+
+header nav ul li a {
+    padding: 0 30px;
+    color: white;
+    display: flex;
+    position: relative;
+    z-index: 10;
+}
+
+header nav ul li h3 {
+    font-family: Britannic;
+    font-size: 50px;
+    line-height: 80px;
+}
+
+header nav ul li p {
+    font-size: 16px;
+    line-height: 60px;
+    margin-left: 10px;
+    padding-top: 20px;
+}
+
+header nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: -5;
+    transition: all 0.3s;
+}
+
+a.current,
+header nav ul li a:hover {
+    color: black;
+}
+
+a.current::after,
+header nav ul li a:hover::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+    background-color: white;
+}
+
+@media only screen and (max-width: 639px) {
+    .btn {
+        width: 160px;
+        height: 160px;
+        right: -80px;
+        top: -80px;
+        border-radius: 80px;
+    }
+
+    .btn>div {
+        bottom: 35px;
+        left: 25px;
+    }
+
+    header nav {
+        clip-path: circle(80px at 100% 0);
+    }
+
+    header nav ul li {
+        height: 60px;
+        text-align: center;
+    }
+
+    header nav ul li h3 {
+        font-size: 30px;
+        line-height: 60px;
+    }
+    
+    header nav ul li p {
+        font-size: 14px;
+        line-height: 50px;
+        padding-top: 10px;
+    }
+}
+
+/******************************************
+main
+******************************************/
+main {
+    width: 100%;
+}
+
+main section {
+    margin-top: 150px;
+    position: relative;
+    display: flex;
+}
+
+main>section:nth-of-type(odd) {
+    flex-direction: row;
+}
+
+main>section:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
+
+main>section>div:nth-of-type(1) {
+    width: calc(50% + 480px);
+    min-width: 960px;
+    height: 400px;
+    background-color: #ccc;
+    position: relative;
+}
+
+main>section>div:nth-of-type(1)>div {
+    width: calc(100% - 560px);
+    max-width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -50px;
+}
+
+main>section:nth-of-type(odd)>div:nth-of-type(1)>div {
+    margin-left: calc(100% - 960px);
+}
+
+main>section:nth-of-type(even)>div:nth-of-type(1)>div {
+    right: calc(100% - 960px);
+}
+
+main>section>div:nth-of-type(1)>div>h2 {
+    font-family: Britannic;
+    font-size: 80px;
+    line-height: 60px;
+    margin-left: 20px;
+}
+
+main>section:nth-of-type(even)>div:nth-of-type(1)>div>h2 {
+    text-align: right;
+    margin-right: 20px;
+}
+
+main>section>div:nth-of-type(1)>div>p {
+    font-size: 18px;
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 1.5em;
+}
+
+.more_btn {
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.more_btn p {
+    font-size: 16px;
+}
+
+div.more_btn:hover {
+    background-color: black;
+    color: white;
+}
+
+main>section>div:nth-of-type(2) {
+    width: 50%;
+    min-width: 560px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    background-size: cover;
+    opacity: 0;
+}
+
+main>section:nth-of-type(odd)>div:nth-of-type(2) {
+    right: 0;
+}
+
+main>section:nth-of-type(even)>div:nth-of-type(2) {
+    left: 0;
+}
+
+div#about {
+    background-image: url(../images/about.jpg);
+}
+
+div#service {
+    background-image: url(../images/service.jpg);
+}
+
+div#menu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div#menu>div {
+    width: 50%;
+    height: 50%;
+    background-size: cover;
+    background-position: center center;
+}
+
+div#menu>div:nth-of-type(1) {
+    background-image: url(../images/menu01.jpg);
+}
+
+div#menu>div:nth-of-type(2) {
+    background-image: url(../images/menu02.jpg);
+}
+
+div#menu>div:nth-of-type(3) {
+    background-image: url(../images/menu03.jpg);
+}
+
+div#menu>div:nth-of-type(4) {
+    background-image: url(../images/menu04.jpg);
+}
+
+div#wedding {
+    background-image: url(../images/wedding.jpg);
+    background-position-x: 65%;
+}
+
+@media only screen and (max-width: 959px) {
+    main section {
+        align-items: center;
+        justify-content: center;
+    }
+
+    main>section:nth-of-type(odd) {
+        flex-direction: column;
+    }
+
+    main>section:nth-of-type(even) {
+        flex-direction: column;
+    }
+
+    main>section>div:nth-of-type(1) {
+        width: 100%;
+        min-width: 0;
+    }
+
+    main>section>div:nth-of-type(2) {
+        position: relative;
+        width: calc(100% - 40px);
+        min-width: 0;
+    }
+
+    main>section>div:nth-of-type(1)>div {
+        width: calc(100% - 20px);
+        max-width: 400px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    main>section:nth-of-type(odd)>div:nth-of-type(1)>div {
+        margin: 0 auto;
+    }
+
+    main>section:nth-of-type(even)>div:nth-of-type(1)>div {
+        right: 0;
+    }
+
+    main>section>div:nth-of-type(1)>div>h2 {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    main>section:nth-of-type(even)>div:nth-of-type(1)>div>h2 {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .more_btn {
+        margin: 50px auto 0;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    main>section>div:nth-of-type(2) {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 449px) {
+    main>section>div:nth-of-type(1)>div>h2 {
+        font-size: 70px;
+    }
+
+    main section {
+        margin-top: 100px;
+    }
+
+    main>section>div:nth-of-type(1)>div>p {
+        margin-top: 50px;
+    }
+}
+
+
+
+/******************************************
+pickup
+******************************************/
+div.pickup {
+    margin-top: 100px;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.pickup>div {
+    width: 420px;
+    height: 400px;
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+div.pickup>div>h3 {
+    font-family: Britannic;
+    font-size: 50px;
+    color: white;
+    position: absolute;
+    top: -40px;
+}
+
+div.pickup>div>div {
+    width: 400px;
+    height: 380px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
+.info>div {
+    text-align: center;
+}
+
+.blog>div {
+    text-align: left;
+}
+
+div.pickup>div>div ul li h4 {
+    font-size: 20px;
+    font-weight: bold;
+    width: 300px;
+    height: 30px;
+    margin: 30px auto 10px;
+    border-bottom: 1px solid black;
+}
+
+div.pickup>div>div ul li p {
+    font-size: 16px;
+}
+
+.blog>div li {
+    width: 300px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.blog>div li:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (max-width: 959px) {
+    div.pickup {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.pickup>div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 449px) {
+    div.pickup>div {
+        width: 100%;
+    }
+
+    div.pickup>div>div {
+        width: calc(100% - 20px);
+    }
+
+    div.pickup>div>div ul li h4 {
+        width: calc(100% - 40px);
+    }
+
+    .blog>div li {
+        width: 100%;
+    }
+
+    div.pickup>div>div ul li p {
+        margin-left: 20px;
+    }
+}
+
+/******************************************
+reservation
+******************************************/
+div.reservation {
+    height: 200px;
+    background-image: url(../images/reservation.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+div.reservation>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+div.reservation>div>div {
+    width: 480px;
+    height: 140px;
+    box-sizing: border-box;
+    border: 5px solid black;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+div.reservation>div>div:hover {
+    background-color: white;
+}
+
+div.reservation>div>div h3 {
+    font-family: Britannic;
+    font-size: 50px;
+    width: 400px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+div.reservation>div>div p {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 639px) {
+    div.reservation>div>div {
+        width: calc(100% - 40px);
+        max-width: 480px;
+    }
+
+    div.reservation>div>div h3 {
+        font-size: 40px;
+        width: calc(100% - 40px);
+    }
+}
+
+/******************************************
+footer
+******************************************/
+footer {
+    height: 250px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer img:hover {
+    opacity: 0.8;
+}
+
+footer small {
+    font-size: 12px;
+    color: white;
+    margin-top: 40px;
+}
+
+@media only screen and (max-width: 449px) {
+    footer h1 {
+        width: calc(100% - 80px);
+    }
+
+    footer img {
+        width: 100%;
+    }
+}
